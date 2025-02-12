@@ -9,7 +9,7 @@ const initialRectangles = [
     width: 300,
     height: 300,
     type: 'image',
-    source: 'https://i.ibb.co/VYzJYvyV/tree-736885-1280-2.jpg', // Image source
+    source: 'https://i.ibb.co/VYzJYvyV/tree-736885-1280-2.jpg',
     id: 'rect1',
   },
   {
@@ -18,7 +18,7 @@ const initialRectangles = [
     width: 300,
     height: 200,
     type: 'video',
-    source: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', // Video source
+    source: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4', 
     id: 'rect2',
   },
   {
@@ -29,7 +29,7 @@ const initialRectangles = [
     type: 'text',
     text: 'Hi! I am a text rectangle',
     id: 'rect3',
-    visible: true, // Visibility property
+    visible: true, 
   },
 ];
 
@@ -62,7 +62,6 @@ const App = () => {
     );
   };
 
-  // Get the current state of rect3's visibility
   const isTextVisible = rectangles.find((rect) => rect.id === 'rect3')?.visible;
 
   return (

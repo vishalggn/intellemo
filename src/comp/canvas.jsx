@@ -4,7 +4,6 @@ import Rectangle from './rectangle';
 
 const Canvas = ({ rectangles, setRectangles, selectedId, selectShape }) => {
   const checkDeselect = (e) => {
-    // Deselect if clicked on empty area
     if (e.target === e.target.getStage()) {
       selectShape(null);
     }

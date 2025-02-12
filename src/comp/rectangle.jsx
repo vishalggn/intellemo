@@ -6,7 +6,7 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
   const trRef = useRef();
   const [image, setImage] = useState(null);
   const videoElement = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false); // Video play state
+  const [isPlaying, setIsPlaying] = useState(false); 
 
   // Load image for 'image' type
   useEffect(() => {
@@ -22,7 +22,7 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
     if (shapeProps.type === 'video') {
       const video = document.createElement('video');
       video.src = shapeProps.source;
-      video.crossOrigin = 'anonymous'; // Allow cross-origin access if needed
+      video.crossOrigin = 'anonymous'; 
       video.loop = true;
       if (isPlaying) {
         video.play();
@@ -32,7 +32,7 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
       const layer = shapeRef.current?.getLayer();
       const anim = new Konva.Animation(() => {
         if (shapeRef.current) {
-          layer.batchDraw(); // Redraw the layer for every frame
+          layer.batchDraw(); 
         }
       }, layer);
 
@@ -64,6 +64,14 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
     }
   };
 
+  const toggleStop = () => {
+    if (videoElement.current) {
+      videoElement.current.pause(); 
+      videoElement.current.currentTime = 0; 
+      setIsPlaying(false); 
+    }
+  };
+  
   // Render image rectangle
   if (shapeProps.type === 'image') {
     return (
@@ -138,7 +146,7 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
           <KonvaImage
             {...shapeProps}
             ref={shapeRef}
-            image={videoElement.current} // Use video element as source for KonvaImage
+            image={videoElement.current} 
           />
           {/* Play/Pause Button */}
           <KonvaText
@@ -150,6 +158,16 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
             padding={5}
             draggable={false}
             onClick={togglePlayPause}
+          />
+          <KonvaText
+            text='Stop'
+            fontSize={16}
+            fill="white"
+            x={shapeProps.x + 70}
+            y={shapeProps.y + 10}
+            padding={5}
+            draggable={false}
+            onClick={toggleStop}
           />
         </Group>
         {isSelected && <Transformer ref={trRef} />}
@@ -189,7 +207,7 @@ const Rectangle = ({ shapeProps, isSelected, onSelect, onChange }) => {
               y: node.y(),
               width: Math.max(5, node.width() * scaleX),
               height: Math.max(5, node.height() * scaleY),
-              fontSize: Math.max(5, (shapeProps.fontSize || 20) * scaleX), // Adjust font size
+              fontSize: Math.max(5, (shapeProps.fontSize || 20) * scaleX), 
             });
           }}
         />
